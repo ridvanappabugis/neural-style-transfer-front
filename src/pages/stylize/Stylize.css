@@ -1,0 +1,69 @@
+.stylize-body {
+    width: inherit;
+    padding-top: 50px;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.stylize-up {
+    flex-wrap: wrap;
+    flex-direction: row;
+    display: flex;
+    gap: 30px;
+    padding: 50px;
+}
+
+.stylize-up-left-column {
+    flex: 40%;
+    align-self: end;
+}
+
+.stylize-up-right-column {
+    flex: 40%;
+    align-self: end;
+}
+
+.stylize-middle {
+    text-align: center;
+}
+.stylize-radio {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    background-color: black;
+    height: 25px;
+    width: 25px;
+}
+
+.stylize-radio:checked {
+    background-color: #252525;
+}
+
+.stylize-desc {
+    margin-top: 10px;
+    height: fit-content;
+    width: fit-content;
+    font-size: 15px;
+    text-align: left;
+    color: dimgray;
+    box-shadow: rgba(0, 0, 0, 0.45) 0px 5px 15px;
+}
+
+.stylize-desc h4 {
+    margin: 15px 5px 0px 5px;
+}
+
+.stylize-desc p {
+    font-size: 15px;
+    margin: 0px 0px 0px 5px;
+}
+
+@media screen and (max-width: 800px) {
+    .stylize-body-left-column {
+        flex: 100%;
+    }
+    .stylize-body-right-column {
+        flex: 100%;
+    }
+}

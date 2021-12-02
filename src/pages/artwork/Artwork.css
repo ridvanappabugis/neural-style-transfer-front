@@ -1,0 +1,54 @@
+.artwork-body {
+    width: inherit;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.artwork-add-btn {
+    background-color: #333;
+    color: white;
+    border: none;
+    margin-right: 5px;
+    padding: 5px;
+}
+
+.artwork-add-btn:active {
+    background-color: gray;
+    color: white;
+}
+
+.artwork-add-btn:disabled {
+    background-color: gray;
+    color: white;
+}
+
+.artwork-up {
+    flex-wrap: wrap;
+    flex-direction: row;
+    display: flex;
+}
+
+.artwork-up-left-column {
+    flex: 50%;
+}
+
+.artwork-up-right-column {
+    flex: 50%;
+    align-self: end;
+}
+
+.artwork-up-right-column div {
+    padding-left: 20px;
+}
+
+
+@media screen and (max-width: 800px) {
+    .artwork-body-left-column {
+        flex: 100%;
+    }
+    .artwork-body-right-column {
+        flex: 100%;
+    }
+}

@@ -1,0 +1,12 @@
+.home {
+    width: inherit;
+    height: fit-content;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.home-top {
+    text-align: center;
+}
