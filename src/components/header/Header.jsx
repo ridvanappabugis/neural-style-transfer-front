@@ -50,7 +50,7 @@ class HeaderBase extends React.Component {
                     <div className="header-nav">
                         <a className={this.state.home} href="/">HOME</a>
                         <a className={this.state.artists} href="/artists">ARTISTS</a>
-                        <a className={this.state.process} href="/stylize">STYLISE</a>
+                        <a className={this.state.process} href="/stylize-choose">STYLISE</a>
                     </div>
                 </div>
             </div>

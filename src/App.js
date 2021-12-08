@@ -4,11 +4,12 @@ import './App.css';
 import NotFound from "./pages/exception/NotFound";
 import Error from "./pages/exception/Error";
 import Home from "./pages/home/Home";
-import Stylize from "./pages/stylize/Stylize";
+import StylizeChose from "./pages/stylize/StylizeChose";
 import React from "react";
 import Artwork from "./pages/artwork/Artwork";
 import Modal from 'react-modal';
 import Search from "./pages/search/Search";
+import StylizeConfigure from "./pages/stylize/StylizeConfigure";
 
 function App() {
   Modal.setAppElement('#root');
@@ -20,7 +21,8 @@ function App() {
               <Route path="/404" element={<NotFound />} />
               <Route path="/500" element={<Error />} />
               <Route path="/artwork/:id" element={<Artwork />} />
-              <Route path="/stylize" element={<Stylize />} />
+              <Route path="/stylize-choose" element={<StylizeChose />} />
+              <Route path="/stylize-configure" element={<StylizeConfigure />} />
               <Route path="/search" element={<Search />} />
               {/*<Route path="/artists"><Artists baseUrl={BASE_URL} /></Route>*/}
           </Routes>

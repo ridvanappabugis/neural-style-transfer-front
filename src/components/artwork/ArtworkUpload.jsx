@@ -1,6 +1,7 @@
 import React from "react"
 import "./ArtworkUpload.css"
 import ArtworkShowcase from "./ArtworkShowcase";
+import PropTypes from "prop-types";
 
 class ArtworkUpload extends React.Component {
 
@@ -8,9 +9,7 @@ class ArtworkUpload extends React.Component {
         super(props);
         this.state = {
             imgSelected: false,
-            img: null,
-            width: null,
-            height: null
+            artwork: {}
         };
 
         this.onFileChange = this.onFileChange.bind(this)
@@ -31,28 +30,44 @@ class ArtworkUpload extends React.Component {
         })
     }
 
+    getBase64(file, onLoadCallback) {
+        return new Promise((resolve, reject) => {
+            const reader = new window.FileReader();
+            reader.onload = function() { resolve(reader.result); };
+            reader.onerror = reject;
+            reader.readAsDataURL(file);
+        });
+    }
+
     onFileChange(e) {
         let upload = e.target.files[0]
-        let fileAsDataURL = window.URL.createObjectURL(upload)
-        this.getHeightAndWidthFromDataUrl(fileAsDataURL).then(dimensions => {
-            this.setState({
-                imgSelected: true,
-                img: dimensions.src,
-                width: dimensions.width,
-                height: dimensions.height
+
+        let fileAsDataURL = this.getBase64(upload)
+
+        fileAsDataURL.then((result) => {
+            this.getHeightAndWidthFromDataUrl(result).then(dimensions => {
+                this.setState({
+                    imgSelected: true,
+                    artwork: {
+                        dataSrc: dimensions.src,
+                        width: dimensions.width,
+                        height: dimensions.height
+                    }
+                })
+                this.props.onChange(this.state.artwork)
             })
         })
-
     }
 
     render() {
-
         return (
             <div>
                 <ArtworkShowcase
-                    url={(this.state.imgSelected && this.state.img) || undefined}
-                    height={(this.state.imgSelected && this.state.height) || undefined}
-                    width={(this.state.imgSelected && this.state.width) || undefined}
+                    artwork={this.state.imgSelected? {
+                        dataSrc: this.state.artwork.dataSrc,
+                        height: this.state.artwork.height,
+                        width: this.state.artwork.width
+                    } : undefined}
                 />
                 <input
                     className="artwork-upload-btn"
@@ -64,5 +79,13 @@ class ArtworkUpload extends React.Component {
         )
     }
 }
+
+ArtworkUpload.propTypes = {
+    onClick: PropTypes.func
+};
+
+ArtworkUpload.defaultProps = {
+    onChange: () => {}
+};
 
 export default ArtworkUpload

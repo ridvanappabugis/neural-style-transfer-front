@@ -1,5 +1,18 @@
 import Client from "../Client";
 
+const getBase64FromUrl = async (url) => {
+    const data = await fetch(url);
+    const blob = await data.blob();
+    return await new Promise((resolve) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(blob);
+        reader.onloadend = () => {
+            const base64data = reader.result;
+            resolve(base64data);
+        }
+    });
+}
+
 class ArtApiService {
     constructor(props) {
         this.service = Client;
@@ -33,26 +46,28 @@ class ArtApiService {
         )
     }
 
-    mapToArtworkDetails(responseData) {
-        return {
-            id: responseData.id,
-            title: responseData.title,
-            img: responseData.image,
-            height: responseData.height,
-            width: responseData.width,
-            artistName: responseData.artistName,
-            artistId: responseData.artistId,
-            completitionYear: responseData.completitionYear,
-            location: responseData.galleries[0],
-            description: this.clean(responseData.description),
-            artStyles: responseData.styles
-        }
+    async mapToArtworkDetails(responseData) {
+        return getBase64FromUrl(responseData.image).then(imgData => {
+            return {
+                id: responseData.id,
+                title: responseData.title,
+                img: imgData,
+                height: responseData.height,
+                width: responseData.width,
+                artistName: responseData.artistName,
+                artistId: responseData.artistId,
+                completitionYear: responseData.completitionYear,
+                location: responseData.galleries[0],
+                description: this.clean(responseData.description),
+                artStyles: responseData.styles
+            }
+        })
     }
 
     getArtworkDetails(artworkId, callback) {
         this.service.get(
             this.wikiArtHost + "/Painting?id=" + artworkId + "&imageFormat=Blog",
-            (status, data) => callback(this.mapToArtworkDetails(data))
+            (status, data) => this.mapToArtworkDetails(data).then((result) => callback(result))
         )
     }
 

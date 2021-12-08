@@ -32,8 +32,8 @@ class ArtworkShowcase extends React.Component {
         let frameToArtPct = 0.15
         let frameToMatPct = 0.025
 
-        let width = this.props.width
-        let height = this.props.height
+        let width = this.props.artwork.width
+        let height = this.props.artwork.height
 
         let frameWidth = width / 0.7
         let frameHeight = height + (2*frameToArtPct * frameWidth)
@@ -80,7 +80,7 @@ class ArtworkShowcase extends React.Component {
                                 position: "absolute"
                             }}
                         >
-                            <img src={this.props.url} alt="Avatar" />
+                            <img src={this.props.artwork.dataSrc} alt="Avatar" />
                         </div>
                     </div>
                 </div>
@@ -90,7 +90,7 @@ class ArtworkShowcase extends React.Component {
                     onClick={this.closeModal}
                     className="artwork-modal"
                 >
-                    <img src={this.props.url} alt="Avatar" onClick={this.closeModal}/>
+                    <img src={this.props.artwork.dataSrc} alt="Avatar" onClick={this.closeModal}/>
                 </ReactModal>
             </div>
 
@@ -99,15 +99,21 @@ class ArtworkShowcase extends React.Component {
 }
 
 ArtworkShowcase.propTypes = {
-    url: PropTypes.string,
-    width: PropTypes.number,
-    height: PropTypes.number
+    artwork: PropTypes.shape({
+        dataSrc: PropTypes.string,
+        width: PropTypes.number,
+        height: PropTypes.number,
+        title: PropTypes.string,
+        completitionYear: PropTypes.number
+    })
 };
 
 ArtworkShowcase.defaultProps = {
-    url: placeholder,
-    width: 309,
-    height: 240
+    artwork: {
+        dataSrc: placeholder,
+        width: 309,
+        height: 240
+    }
 };
 
 export default ArtworkShowcase
