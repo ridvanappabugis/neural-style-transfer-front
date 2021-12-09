@@ -4,7 +4,7 @@ Companion project to the ml project for Neural Style Transfer https://github.com
 Written in React, contains a client used to browse artworks/upload images that will be used as content/style image inputs for the Neural Style Transfer logic.
 
 # Run
-Build with ```npm biuld```. Run with ```npm start```.
+Build with ```npm build```. Run with ```npm start```.
 
 # Choose Art from WikiArt Or Upload your own images
 
