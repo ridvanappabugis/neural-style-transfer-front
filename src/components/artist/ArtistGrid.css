@@ -1,0 +1,21 @@
+
+/* Float four columns side by side */
+.column {
+    float: left;
+    padding: 20px 10px 0px;
+}
+
+.row {
+    width: inherit;
+    margin: 0 -5px;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+}
+
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+

@@ -6,7 +6,7 @@ class StylizeApiService {
         this.stylizeHost = "http://localhost:5000";
     }
 
-    postStylize(contentImg, styleImg, callback, epochs= 5, stepsPerEpoch= 10) {
+    postStylize(contentImg, styleImg, callback, epochs= 8, stepsPerEpoch= 100) {
         this.service.post(
             this.stylizeHost + "/stylize",
             {

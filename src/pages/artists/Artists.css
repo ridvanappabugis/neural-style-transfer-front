@@ -1,0 +1,19 @@
+.artists-body {
+    width: inherit;
+    height: fit-content;
+    padding-left: 10%;
+    padding-right: 10%;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.artists-button {
+    width: 40%;
+    margin-top: 20px;
+    margin-left: 30%;
+    margin-right: 30%;
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 5px;
+}

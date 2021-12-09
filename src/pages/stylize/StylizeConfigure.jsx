@@ -36,7 +36,6 @@ class StylizeConfigureBase extends React.Component {
             this.state.contentChoice.dataSrc,
             this.state.styleChoice.dataSrc,
             (result) => {
-                console.log(result)
                 this.setState({
                     isProcess: false,
                     processDone: true,
@@ -66,25 +65,26 @@ class StylizeConfigureBase extends React.Component {
                             <ArtworkShowcase artwork={styleArt}/>
                         </div>
                     </div>
-                </div>
-                <div className="stylize-middle">
-                    <h2>Configure the cycle and intensity of the styling.</h2>
-                    <button className="artwork-add-btn" disabled={this.state.isProcess || this.state.processDone} onClick={this.runProcess}>Run Process</button>
-                </div>
-                <div className="stylize-middle">
-                    <div className="stylize-up">
-                        {
-                            this.state.isProcess && <div className="lds-dual-ring"/>
-                        }
-                        {
-                            this.state.processDone &&
-                            <div className="stylize-up-right-column">
-                                <ArtworkShowcase artwork={this.state.processResult}/> 
-                            </div>
-                        }
+                    <div className="stylize-middle">
+                        <h2>Configure the cycle and intensity of the styling.</h2>
+                        <button className="artwork-add-btn" disabled={this.state.isProcess || this.state.processDone} onClick={this.runProcess}>Run Process</button>
+                    </div>
+                    <div className="stylize-middle">
+                        <div className="stylize-up">
+                            {
+                                this.state.isProcess && <div className="lds-dual-ring"/>
+                            }
+                            {
+                                this.state.processDone &&
+                                <div className="stylize-up-right-column">
+                                    <ArtworkShowcase artwork={this.state.processResult}/>
+                                </div>
+                            }
 
+                        </div>
                     </div>
                 </div>
+
             </div>
         )
     }
@@ -104,8 +104,6 @@ function StylizeConfigure(props) {
     const { search } = useLocation();
 
     let searchParam = new URLSearchParams(search)
-    console.log("test")
-    console.log(searchParam)
 
     if (searchParam.get("selectedStyle") == null || searchParam.get("selectedContent") == null) {
         document.location = "/"

@@ -81,6 +81,40 @@ class ArtApiService {
             )
         )
     }
+
+    mapToArtistList(responseData, limit) {
+        return responseData.data
+            .filter((item, index) => item.image!==null)
+            .filter((item, index) => index < limit)
+            .map((item, index) => ({
+                _id: item.id,
+                name: item.artistName,
+                img: item.image
+            }))
+    }
+
+    getArtistList(pagToken, callback) {
+        pagToken = pagToken===null? "" : pagToken
+        this.service.get(
+            this.wikiArtHost + "/UpdatedArtists?paginationToken="+ pagToken,
+            (status, response) => callback(
+                this.mapToArtistList(response, 100),
+                response.paginationToken,
+                response.hasMore
+            )
+        )
+    }
+
+    getArtworkByArtistSearch(artistId, pagToken, callback) {
+        this.service.get(
+            this.wikiArtHost + "/PaintingsByArtist?id=" + artistId + "&imageFormat=PortraitSmall",
+            (status, response) => callback(
+                this.mapToArtworkList(response, 100),
+                response.paginationToken,
+                response.hasMore
+            )
+        )
+    }
 }
 
 export default new ArtApiService();

@@ -10,6 +10,8 @@ import Artwork from "./pages/artwork/Artwork";
 import Modal from 'react-modal';
 import Search from "./pages/search/Search";
 import StylizeConfigure from "./pages/stylize/StylizeConfigure";
+import Artists from "./pages/artists/Artists";
+import Artist from "./pages/artists/Artist";
 
 function App() {
   Modal.setAppElement('#root');
@@ -24,7 +26,8 @@ function App() {
               <Route path="/stylize-choose" element={<StylizeChose />} />
               <Route path="/stylize-configure" element={<StylizeConfigure />} />
               <Route path="/search" element={<Search />} />
-              {/*<Route path="/artists"><Artists baseUrl={BASE_URL} /></Route>*/}
+              <Route path="/artists" element={<Artists />} />
+              <Route path="/artist-paintings/:id" element={<Artist />} />
           </Routes>
       </BrowserRouter>
   );
