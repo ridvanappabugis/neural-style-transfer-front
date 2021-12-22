@@ -66,7 +66,7 @@ class StylizeConfigureBase extends React.Component {
                         </div>
                     </div>
                     <div className="stylize-middle">
-                        <h2>Configure the cycle and intensity of the styling.</h2>
+                        <h2>Run a transfer for your choice of art.</h2>
                         <button className="artwork-add-btn" disabled={this.state.isProcess || this.state.processDone} onClick={this.runProcess}>Run Process</button>
                     </div>
                     <div className="stylize-middle">
